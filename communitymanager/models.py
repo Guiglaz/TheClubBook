@@ -23,7 +23,7 @@ class Priorite(models.Model):
 
 class Post(models.Model):
     titre           = models.CharField(max_length=100)
-    slug            = models.SlugField(max_length=100, default='Post sur TheClubBook', null=True)
+    slug            = models.SlugField(max_length=100, null=True)
     description     = models.TextField(null=True)
     date_creation   = models.DateTimeField(verbose_name='Date de publication', default=timezone.now)
     communaute      = models.ForeignKey(Communaute, on_delete=models.CASCADE, related_name='posts')

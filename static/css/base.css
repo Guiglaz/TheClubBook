@@ -7,12 +7,11 @@ header {
     padding: 10px 40px;
     background-color: rgba(212, 211, 211, 0.68);
     color: #000000;
-    border-bottom : 2px groove rgb(161, 161, 161)
+    border-bottom : 2px groove #0e2671
 }
 
-header h1 a:link, header h1 a:visited, header h1 a:active, header h1 a:hover {
+header h1 a:link, header h1 a:visited, header h1 a:hover, header h1 a:active  {
     color: #0499de;
-    text-decoration: none;
     font-weight: bold;
 }
 
@@ -33,6 +32,7 @@ body {
     margin-left:40px;
 }
 
+
 #header_logo img{
     float: left;
     position: absolute;
@@ -42,7 +42,7 @@ body {
     height: 94px;
 }
 
-#header_logout_icon{
+.header_logout_icon{
     text-align: Right;
     float: right;
     vertical-align: top;
@@ -55,3 +55,48 @@ body {
     font-style: normal;
 }
 
+.monMenu {
+    width:auto;
+    heigh:auto;
+    padding:10px;
+    font-size:20px;
+    border-color: rgba(14, 38, 113, 0.9);
+    border-bottom-style: solid;
+    border-collapse:collapse;
+    color: #0499de;
+}
+
+.activeMenuD {
+    border-style:solid none none solid;
+    border-radius: 5px;
+}
+.activeMenuC {
+    border-style:solid solid none;
+    border-radius: 5px;
+}
+.activeMenuG {
+    border-style:solid solid none none;
+    border-radius: 5px;
+}
+
+table a:link, table a:visited, table a:active{
+    text-decoration: none;
+    color: #0499de;
+}
+
+table a:hover{
+    color: #0a75a3;
+}
+
+.content {
+    margin:10px;
+    padding:5px;
+}
+
+.tempClass {
+    border:3px solid pink;
+}
+
+.tempClassB {
+    border:3px solid #00ff0e;
+}

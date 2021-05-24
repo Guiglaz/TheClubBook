@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,34 +15,57 @@
 
 
 
+<body class="tempClass">
 
 <header>
-    <div id="header_logo"><img src="{% static 'img\logo.png' %}" alt="ISAE SUPAERO" ></div>
 
-    <h1><a href = '{% url "connected" %}'>TheClubBook</a></h1>
+    <div id="header_logo" class="tempClass"><img src="{% static 'img\logo.png' %}" alt="ISAE SUPAERO" ></div>
+    <div class="tempClass">
+    <h1><a href = '{% url "commus" %}'>TheClubBook</a></h1>
     <p>- Le site d'annconces et de communication pour les Clubs de Supaero -</p>
 
-    <hr>
 
+    </div>
+    <hr>
     {% block logout %}
     {% if user.is_authenticated %}
+    <div  class="tempClass">
+    <a class="header_logout_icon" href="/accounts/logout">Se Déconnecter <i class="fas fa-sign-out-alt"></i></a></div>
+    <div  class="tempClass">
+    <p id="header_welcome">Vous êtes connecté en tant que  {{ user.username }}.</p></div>
 
-    <a id="header_logout_icon" href="/accounts/logout">Se Déconnecter <i class="fas fa-sign-out-alt"></i></a>
-    <p id="header_welcome">Vous êtes connecté en tant que  {{ user.username }}.</p>
-    <br>
+    {% else %}
+    <a class="header_logout_icon" href = '/accounts/login'> Se Connecter <i class="fas fa-sign-in-alt"></i></a>
+
     {% endif %}
     {% endblock %}
+    <br>
 </header>
 
 
 
+<div class="content tempClass">
 
+    <br>
+    {% if user.is_authenticated %}
+    {% block naviguation %}
+    <div class="tempClass">
+        <table>
+            <td class="monMenu {% block menuFeed %}{% endblock %}"><a  href="{% url 'news_feed' %}">Mon News Feed</a></td>
+            <td class="monMenu {% block menuCommu %}{% endblock %}"><a  href="{% url 'commus' %}">Mes Communautes</a></td>
+            <td class="monMenu {% block menuPost %}{% endblock %}"><a  href="{% url 'nouveau_post' %}">Faire Un Nouveau Post</a></td>
+        </table>
+    </div>
+    {% endblock %}
+    {% endif %}
 
-<body>
-<br>
-{% block content %}
+    <div class="content tempClass">
+    {% block content %}
+    {% endblock %}
+    </div>
 
-{% endblock %}</body>
+</div>
+</body>
 
 
 
@@ -51,7 +74,7 @@
 
 <footer>
     <hr>
-    <p> ©opyright 2021 ISAE-SUPAERO - AWNG - Guilhem Glaziou</p>
+    <p> ©Copyright 2021 ISAE-SUPAERO - AWNG - Guilhem Glaziou</p>
 
 </footer>
 
