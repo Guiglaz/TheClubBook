@@ -9,8 +9,10 @@
     </style>
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <script src="https://kit.fontawesome.com/c5400dbf8e.js" crossorigin="anonymous"></script>
 </head>
+
 
 
 
@@ -22,49 +24,47 @@
     <div id="header_logo" class="tempClass"><img src="{% static 'img\logo.png' %}" alt="ISAE SUPAERO" ></div>
     <div class="tempClass">
     <h1><a href = '{% url "commus" %}'>TheClubBook</a></h1>
-    <p>- Le site d'annconces et de communication pour les Clubs de Supaero -</p>
+    <p>- Le site d'annconces et de communication pour les Clubs de Supaero -</p></div>
 
-
-    </div>
     <hr>
+
     {% block logout %}
     {% if user.is_authenticated %}
-    <div  class="tempClass">
-    <a class="header_logout_icon" href="/accounts/logout">Se Déconnecter <i class="fas fa-sign-out-alt"></i></a></div>
-    <div  class="tempClass">
-    <p id="header_welcome">Vous êtes connecté en tant que  {{ user.username }}.</p></div>
+    <table class="header_table">
+        <td  class="tempClass header_logout_icon">
+            <a class="header_logout_icon" href="/accounts/logout">Se déconnecter <i class="fas fa-sign-out-alt"></i></a></td>
+        <td  class="tempClass header_welcome">
+            Vous êtes connecté en tant que  {{ user.username }}.</td>
 
+    </table>
     {% else %}
-    <a class="header_logout_icon" href = '/accounts/login'> Se Connecter <i class="fas fa-sign-in-alt"></i></a>
-
+    <table class="header_table">
+        <td><a class="header_logout_icon" href = '/accounts/login'> Se Connecter <i class="fas fa-sign-in-alt"></i></a></td>
+    </table>
     {% endif %}
     {% endblock %}
-    <br>
 </header>
+
+<div class="Menu tempClass">
+    {% if user.is_authenticated %}
+    {% block navigation %}
+    <table>
+        <td class="monMenu{% block menuFeed %}{% endblock %}"><a href="{% url 'news_feed' %}">News Feed</a></td>
+        <td class="monMenu{% block menuCommu %}{% endblock %}"><a href="{% url 'commus' %}">Communautes</a></td>
+        <td class="monMenu{% block menuPost %}{% endblock %}"><a href="{% url 'nouveau_post' %}">Nouveau Post</a></td>
+    </table>
+    {% endblock %}
+    {% endif %}
+</div>
 
 
 
 <div class="content tempClass">
-
-    <br>
-    {% if user.is_authenticated %}
-    {% block naviguation %}
-    <div class="tempClass">
-        <table>
-            <td class="monMenu {% block menuFeed %}{% endblock %}"><a  href="{% url 'news_feed' %}">Mon News Feed</a></td>
-            <td class="monMenu {% block menuCommu %}{% endblock %}"><a  href="{% url 'commus' %}">Mes Communautes</a></td>
-            <td class="monMenu {% block menuPost %}{% endblock %}"><a  href="{% url 'nouveau_post' %}">Faire Un Nouveau Post</a></td>
-        </table>
-    </div>
-    {% endblock %}
-    {% endif %}
-
-    <div class="content tempClass">
     {% block content %}
     {% endblock %}
-    </div>
-
 </div>
+
+
 </body>
 
 
