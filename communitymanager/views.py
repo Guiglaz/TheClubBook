@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 def first_page(request):
     return render(request, 'first_page.html')
 
+
 @login_required(login_url='/accounts/login/')
 def connecte(request):
-    return render(request, 'connecte.html')
+    return render(request, 'communitymanager/connecte.html')

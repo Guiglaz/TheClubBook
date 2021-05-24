@@ -1,12 +1,58 @@
 {% load static %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}TheClubBook{% endblock %}</title>
+    <style>
+        body{font-family: Verdana, sans-serif}
+    </style>
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/c5400dbf8e.js" crossorigin="anonymous"></script>
 </head>
-<body>
 
-</body>
+
+
+
+
+<header>
+    <div id="header_logo"><img src="{% static 'img\logo.png' %}" alt="ISAE SUPAERO" ></div>
+
+    <h1><a href = '{% url "connected" %}'>TheClubBook</a></h1>
+    <p>- Le site d'annconces et de communication pour les Clubs de Supaero -</p>
+
+    <hr>
+
+    {% block logout %}
+    {% if user.is_authenticated %}
+
+    <a id="header_logout_icon" href="/accounts/logout">Se Déconnecter <i class="fas fa-sign-out-alt"></i></a>
+    <p id="header_welcome">Vous êtes connecté en tant que  {{ user.username }}.</p>
+    <br>
+    {% endif %}
+    {% endblock %}
+</header>
+
+
+
+
+
+<body>
+<br>
+{% block content %}
+
+{% endblock %}</body>
+
+
+
+
+
+
+<footer>
+    <hr>
+    <p> ©opyright 2021 ISAE-SUPAERO - AWNG - Guilhem Glaziou</p>
+
+</footer>
+
 </html>

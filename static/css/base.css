@@ -1,0 +1,57 @@
+header {
+    width: auto;
+    height: auto;
+    justify-content: space-between;
+    text-align: center;
+    font-family: Verdana, sans-serif;
+    padding: 10px 40px;
+    background-color: rgba(212, 211, 211, 0.68);
+    color: #000000;
+    border-bottom : 2px groove rgb(161, 161, 161)
+}
+
+header h1 a:link, header h1 a:visited, header h1 a:active, header h1 a:hover {
+    color: #0499de;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header p {
+    color: #0e2671;
+    font-style: italic;
+}
+
+footer {
+    font-size: 11px;
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-style: italic;
+}
+
+body {
+    margin-left:40px;
+}
+
+#header_logo img{
+    float: left;
+    position: absolute;
+    top: 8px;
+    left: 42px;
+    width: 127px;
+    height: 94px;
+}
+
+#header_logout_icon{
+    text-align: Right;
+    float: right;
+    vertical-align: top;
+}
+#header_welcome{
+    float: left;
+    text-align: Left;
+    color: #747474;
+    vertical-align: top;
+    font-style: normal;
+}
+

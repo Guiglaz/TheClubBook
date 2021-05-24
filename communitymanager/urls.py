@@ -3,6 +3,6 @@ from communitymanager import views
 
 
 urlpatterns = [
-    path('connecte', views.connecte)
+    path('connecte', views.connecte, name='connected')
 
     ]

@@ -1,34 +1,9 @@
-<body class=" login" data-admin-utc-offset="0">
+{% extends "base.html" %}
 
-<!-- Container -->
-<div id="container">
-
-
-    <!-- Header -->
-    <div id="header">
-        <div id="branding">
-            <h1><a href="/">TheClubBook</a></h1>
-        </div>
-    </div>
-    <!-- END Header -->
-
-
-    <!-- Content -->
-    <div id="content" class="colM">
-        <form method="post" action="{% url 'login' %}">{% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Se Connecter">
-            <input type="hidden" name="next" value="{{ next }}">
-        </form>
-    </div>
-
-    <!-- END Content -->
-    <div id="footer">
-
-    </div>
-</div>
-<!-- END Container -->
-
-
-
-</body>
+{% block content %}
+<form method="post" action="{% url 'login' %}">{% csrf_token %}
+     {{ form }}
+     <input type="submit" value="Se Connecter">
+     <input type="hidden" name="next" value="{{ next }}">
+ </form>
+{% endblock %}
