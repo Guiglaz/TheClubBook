@@ -13,7 +13,8 @@ def first_page(request):
 
 @login_required(login_url='/accounts/login/')
 def communautes(request):
-
+    list_com = Communaute.objects.all()
+    nb_commu = len(list_com)
     return render(request, 'communitymanager/communautes.html', locals())
 
 
@@ -24,15 +25,20 @@ def communaute(request, id_commu, nom_commu):
     except Http404:
         return redirect(communautes)
 
+    list_post = commu.posts.all()
+    nb_post = len(list_post)
     return render(request, 'communitymanager/communaute.html', locals())
 
 
 @login_required(login_url='/accounts/login/')
 def post(request, id_post, slug_post):
     try:
-        p = get_object_or_404(Post, id=id_post, slug=slug_post)
+        post = get_object_or_404(Post, id=id_post, slug=slug_post)
     except Http404:
         return redirect(communautes)
+
+    list_com = post.commentaires.all()
+    nb_com = len(list_com)
 
     return render(request, 'communitymanager/post.html', locals())
 

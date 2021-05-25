@@ -10,13 +10,13 @@ class CommunauteAdmin(admin.ModelAdmin):
     list_filter     = ('date_creation', 'abonnes')
     date_hierarchy  = 'date_creation'
     ordering        = ('date_creation', )
-    search_fields    = ('nom', 'abonnes')
+    search_fields    = ('nom','abonnes__username',)
 
-    fields = ('nom', )
+    #fields = ('nom', )
 
 
 class PrioriteAdmin(admin.ModelAdmin):
-    list_display    = ('label',)
+    list_display     = ('label',)
     search_fields    = ('label', )
 
 
@@ -25,7 +25,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter     = ('priorite', 'date_creation', 'evenementiel', 'date_evenement', 'communaute')
     date_hierarchy  = 'date_creation'
     ordering        = ('date_creation',)
-    search_fields   = ('titre', 'description', 'evenementiel', 'priorite', 'auteur')
+    search_fields   = ('titre', 'description','auteur__username')
 
     prepopulated_fields = {'slug': ('titre','auteur'), }
     fieldsets = (
@@ -54,7 +54,7 @@ class CommentaireAdmin(admin.ModelAdmin):
     list_filter     = ('auteur', 'post', 'date_creation', 'likes')
     date_hierarchy  = 'date_creation'
     ordering        = ('date_creation',)
-    search_fields   = ('auteur', 'contenu', 'post')
+    search_fields   = ('auteur__username', 'contenu', 'post__titre')
 
     fieldsets = (
         ('Paramètres Generaux', {

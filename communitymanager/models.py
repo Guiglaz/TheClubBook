@@ -29,7 +29,7 @@ class Post(models.Model):
     communaute      = models.ForeignKey(Communaute, on_delete=models.CASCADE, related_name='posts')
     priorite        = models.ForeignKey(Priorite, on_delete=models.CASCADE, related_name='posts')
     evenementiel    = models.BooleanField(default=False)
-    date_evenement  = models.DateTimeField(verbose_name="Date de l'evenement", null=True)
+    date_evenement  = models.DateTimeField(verbose_name="Date de l'evenement", null=True, blank=True)
     auteur          = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
     likes           = models.ManyToManyField(User, related_name='likes')
 

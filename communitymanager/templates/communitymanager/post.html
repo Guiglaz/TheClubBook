@@ -2,5 +2,28 @@
 
 
 {% block content %}
-<p>Page post</p>
+<h1>{{post.titre}}</h1>
+<br>
+<p>{{post.description}}</p>
+
+<table class="commu tempClass">
+
+    {% if nb_com == 0 %}
+        <tr>Commentaire :</tr>
+    {%else%}
+        <tr>Commentaire{{ nb_com|pluralize }} :</tr>
+    {%endif%}
+
+{% for com in list_com %}
+
+    <tr class="tempClass">
+        <td>{{com.auteur.username}} dit :</td>
+        <td> " {{ com.contenu }} "</td>
+    </tr>
+{% empty %}
+<tr><h6>Soyez le premier à commenter !</h6></tr>
+{% endfor %}
+</table>
+
+
 {% endblock %}

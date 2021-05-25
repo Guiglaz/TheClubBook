@@ -1,8 +1,26 @@
 {% extends "base.html" %}
-
+{% block addHead %}<link rel="stylesheet" type="text/css" href='/static/communitymanager/css/commu.css'> {% endblock %}
 {% block menuCommu %} activeMenuC {% endblock %}
 
 
 {% block content %}
-<p>Page Communautes</p>
+
+{% if nb_commu == 0 %}
+    <h1>Communauté</h1>
+{% else %}
+    <h1 class="title">Communauté{{nb_commu|pluralize}}</h1>
+{% endif %}
+<hr>
+<div class="block_communaute">
+    <table class="tempClass">
+    {% for com in list_com %}
+    <div class="tempClass">
+            <tr class="tempClass"><a class=commu" href="{% url 'commu' com.id com.nom %}">{{ com.nom }}</a></tr>
+    </div>
+
+    {% empty %}
+    <tr><h1>Desolé mais il n'y a aucune communauté d'enregistrée...</h1></tr>
+    {% endfor %}
+    </table>
+</div>
 {% endblock %}

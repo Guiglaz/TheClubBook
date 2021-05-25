@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<p>Page Communaute</p>
+<h1>{{nom_commu}}</h1>
+
+<table class="commu tempClass">
+
+        {% if nb_post != 0 %}
+                <h4>Post{{nb_post|pluralize}}</h4>
+        {%endif%}
+
+        {% for post in list_post %}
+        <div class="commu">
+
+                <tr class="tempClass"><a href="{% url 'post' post.id post.slug %}">{{ post.titre }}</a></tr>
+
+        </div>
+
+
+
+        {% empty %}
+        <tr><h6>Desolé mais il n'y a aucun post pour la communauté {{commu.nom}}</h6></tr>
+        {% endfor %}
+</table>
+
 {% endblock %}

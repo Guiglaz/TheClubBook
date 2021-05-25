@@ -26,7 +26,6 @@ header p {
 
 body {
     margin-left:40px;
-    margin
 }
 
 
@@ -95,7 +94,7 @@ body {
 }
 
 .tempClass {
-    border:3px solid pink;
+    border:3px solid red;
 }
 
 .tempClassB {
