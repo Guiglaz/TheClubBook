@@ -5,7 +5,7 @@ header {
     text-align: center;
     padding: 10px 20px;
     margin:0px;
-    background-color: rgba(212, 211, 211, 0.68);
+    background-color: rgb(241, 241, 241);
     color: #000000;
     border-bottom : 2px groove #0e2671
 }
@@ -59,52 +59,50 @@ body {
     font-size:20px;
     color: #0499de;
     border-color: rgba(14, 38, 113, 0.9);
+    border-radius: 5px;
 }
 
 .monMenu {
     border-bottom-style: solid;
     padding:10px;
     border-color: rgba(14, 38, 113, 0.9);
+    border-radius: 5px;
 }
 
 .monMenu a:link, .monMenu a:visited, .monMenu a:active{
     text-decoration: none;
     color: #0499de;
+    border-radius: 5px;
 }
 
 .monMenu a:hover{
     color: #0a75a3;
     text-decoration: none;
+    border-radius: 5px;
 }
 
 .activeMenuD {
     border-style:solid none none solid;
+    border-radius: 5px;
 }
 .activeMenuC {
     border-style:solid solid none;
+    border-radius: 5px;
 }
 .activeMenuG {
     border-style:solid solid none none;
+    border-radius: 5px;
 }
 
 
 .content {
-    margin:10px;
+    margin:5px;
     padding:5px;
 }
 
-.tempClass {
-    border:3px solid red;
-}
-
-.tempClassB {
-    border:3px solid #00ff0e;
-}
-
-
 footer {
     font-size: 11px;
-    position: absolute;
+    position: relative;
     bottom: 8px;
     left: 16px;
     font-style: italic;

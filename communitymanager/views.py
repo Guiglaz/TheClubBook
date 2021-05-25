@@ -13,6 +13,7 @@ def first_page(request):
 
 @login_required(login_url='/accounts/login/')
 def communautes(request):
+    date_now=timezone.now()
     list_com = Communaute.objects.all()
     nb_commu = len(list_com)
     return render(request, 'communitymanager/communautes.html', locals())
@@ -25,6 +26,8 @@ def communaute(request, id_commu, nom_commu):
     except Http404:
         return redirect(communautes)
 
+    date_now=timezone.now()
+    nb_abonnes=len(commu.abonnes.all())
     list_post = commu.posts.all()
     nb_post = len(list_post)
     return render(request, 'communitymanager/communaute.html', locals())
@@ -37,8 +40,10 @@ def post(request, id_post, slug_post):
     except Http404:
         return redirect(communautes)
 
+    date_now=timezone.now()
     list_com = post.commentaires.all()
     nb_com = len(list_com)
+    nb_likes = len(post.likes.all())
 
     return render(request, 'communitymanager/post.html', locals())
 
@@ -57,5 +62,6 @@ def modif_post(request):
 
 @login_required(login_url='/accounts/login/')
 def news_feed(request):
+    date_now=timezone.now()
 
     return render(request, 'communitymanager/news_feed.html', locals())

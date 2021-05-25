@@ -1,26 +1,41 @@
 {% extends "base.html" %}
+{% block addHead %}<link rel="stylesheet" type="text/css" href='/static/communitymanager/css/commun.css'> {% endblock %}
 
 {% block content %}
-<h1>{{nom_commu}}</h1>
+<div class="blockTitle">
+    <h1 class="title">{{nom_commu | title}}</h1>
+    <p class="time">Since {{commu.date_creation |date:"D d M Y"}} - {{nb_abonnes}} membre{{nb_abonnes|pluralize}}</p>
+<hr>
+</div>
+<div class="blockContenu">
 
-<table class="commu tempClass">
+    {% for post in list_post %}
+    <div class="blockMenu slideIn">
+        <table class="blockMen">
+            <tr class="slideInTitre">
+                <td class=""><a class="" href="{% url 'post' post.id post.slug %}">{{ post.titre | title}}</a></td>
+                {% if user in post.likes.all %}
+                <th rowspan="2" class="subscribe">
+                    <i class="fas fa-thumbs-up"></i>
+                </th>
+                {% else %}
+                <th rowspan="2" class="like">
+                    <i class="fas fa-thumbs-up"></i>
+                </th>
+                {% endif %}
+            </tr>
+            <tr ><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago</td></tr>
+        </table>
+    </div>
+    <div class="blockDescription slideIn">
+        {{post.description|truncatewords:50|capfirst}}
+    </div>
+    <hr>
 
-        {% if nb_post != 0 %}
-                <h4>Post{{nb_post|pluralize}}</h4>
-        {%endif%}
-
-        {% for post in list_post %}
-        <div class="commu">
-
-                <tr class="tempClass"><a href="{% url 'post' post.id post.slug %}">{{ post.titre }}</a></tr>
-
-        </div>
+    {% empty %}
+        <h6 class="empty">Desolé mais il n'y a pas encore de post pour la communauté {{commu.nom}}. <a href="{% url 'nouveau_post' %}">En écrire un</a></h6>
+    {% endfor %}
 
 
-
-        {% empty %}
-        <tr><h6>Desolé mais il n'y a aucun post pour la communauté {{commu.nom}}</h6></tr>
-        {% endfor %}
-</table>
-
+</div>
 {% endblock %}

@@ -1,0 +1,106 @@
+.blockTitle {
+    padding : 10px;
+}
+.title{
+    font-weight: bold;
+
+}
+.empty{
+    color:gray;
+
+}
+.blockContenu{
+    max-width: 800px;
+    padding-left: 10px;
+
+}
+
+.blockMenu {
+    background-color: #e8e8e8;
+    /*border:2px solid lightgray;*/
+    border-radius: 5px;
+    width:100%;
+    padding:5px 10px;
+}
+
+.blockMenu a:link, .blockMenu a:visited, .blockMenu a:active{
+    color: #0499de;
+    font-size: 25px;
+}
+
+.blockMenu a:hover{
+    color: #0a75a3;
+    font-size: 25px;
+    text-decoration: none;
+}
+
+.subscribe{
+    width:100%;
+    text-align: right;
+    color:green;
+    padding-right: 10px;
+}
+.unsubscribe{
+    width:100%;
+    text-align: right;
+    color: #d20303;
+    padding-right: 10px;
+}
+.like{
+    width:100%;
+    text-align: right;
+    color: gray;
+    padding-right: 10px;
+}
+.time{
+    width: 100%;
+    color:gray;
+}
+
+.blockDescription{
+    padding: 10px 20px;
+    text-align: justify;
+    color: #424242;
+}
+.blockCommentaire{
+    padding-left: 30px;
+    max-width: 600px;
+    color: #424242;
+}
+.com{
+    padding-left:20px;
+}
+
+.slideIn{
+    animation: myAnim 1s ease 1 -300ms normal forwards;
+}
+.slideInTitre{
+    animation: myAnim 1500ms ease 1 -300ms normal forwards;
+}
+@keyframes myAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.rollDescription{
+    animation: rollDown 1s ease 0s 1 normal none;
+}
+
+@keyframes rollDown {
+  0% {
+    transform: scaleY(0.4);
+    transform-origin: 100% 0%;
+  }
+
+  100% {
+    transform: scaleY(1);
+    transform-origin: 100% 0%;
+  }
+}

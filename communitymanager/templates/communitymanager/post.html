@@ -1,29 +1,49 @@
 {% extends "base.html" %}
+{% block addHead %}<link rel="stylesheet" type="text/css" href='/static/communitymanager/css/commun.css'> {% endblock %}
 
 
 {% block content %}
-<h1>{{post.titre}}</h1>
-<br>
-<p>{{post.description}}</p>
+<div class="blockTitle">
+    <h1 class="title">{{post.titre|title}}</h1>
+    <p class="time">Since {{post.date_creation |date:"D d M Y"}}
+        - {{nb_likes}} {%if nb_likes < 2 %}like {% else %}likes{%endif%} -
+        <i class="fas fa-thumbs-up"></i>
+    </p>
+    <hr>
+</div>
 
-<table class="commu tempClass">
+<div class="blockDescription">
+    <p class="">{{post.description|capfirst}}</p>
+    <hr>
+</div>
+
+
+<div class="blockCommentaire">
+
 
     {% if nb_com == 0 %}
-        <tr>Commentaire :</tr>
+        <h3>Commentaire :</h3>
     {%else%}
-        <tr>Commentaire{{ nb_com|pluralize }} :</tr>
+        <h3>Commentaire{{ nb_com|pluralize }} :</h3>
     {%endif%}
 
-{% for com in list_com %}
 
-    <tr class="tempClass">
-        <td>{{com.auteur.username}} dit :</td>
-        <td> " {{ com.contenu }} "</td>
-    </tr>
-{% empty %}
-<tr><h6>Soyez le premier à commenter !</h6></tr>
-{% endfor %}
-</table>
+
+
+    <div class="com">
+    {% for com in list_com %}
+        <table class="tempClass com">
+            <tr><th class="tempClass ">{{com.auteur.username|capfirst}} a dit</th></tr>
+            <tr><td class="tempClass "> " {{ com.contenu|capfirst }} "</td></tr>
+            <tr><td class="time">{{ com.date_creation|timesince:date_now }} ago</td></tr>
+        </table>
+        <hr>
+    {% empty %}
+        <tr><h6>Soyez le premier à commenter !</h6></tr>
+    {% endfor %}
+    </div>
+
+</div>
 
 
 {% endblock %}
