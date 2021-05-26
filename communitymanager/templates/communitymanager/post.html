@@ -7,7 +7,7 @@
     <h1 class="title">{{post.titre|title}}</h1>
     <p class="time">Since {{post.date_creation |date:"D d M Y"}}
         - {{nb_likes}} {%if nb_likes < 2 %}like {% else %}likes{%endif%} -
-        <i class="fas fa-thumbs-up"></i>
+        <i class="fas fa-thumbs-up titleLike"></i>
     </p>
     <hr>
 </div>
@@ -33,7 +33,7 @@
     <div class="com">
     {% for com in list_com %}
         <table class="tempClass com">
-            <tr><th class="tempClass ">{{com.auteur.username|capfirst}} a dit</th></tr>
+            <tr><th class="tempClass ">{{com.auteur.username|capfirst}} a dit</th><td class="comlike" rowspan="3"><i class="fas fa-thumbs-up"></i></td></tr>
             <tr><td class="tempClass "> " {{ com.contenu|capfirst }} "</td></tr>
             <tr><td class="time">{{ com.date_creation|timesince:date_now }} ago</td></tr>
         </table>
@@ -43,7 +43,15 @@
     {% endfor %}
     </div>
 
+
+
 </div>
 
-
+<div>
+    <form action="{% url 'post' post.id post.slug %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit" />
+    </form>
+</div>
 {% endblock %}

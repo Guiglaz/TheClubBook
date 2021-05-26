@@ -31,7 +31,7 @@ class Post(models.Model):
     evenementiel    = models.BooleanField(default=False)
     date_evenement  = models.DateTimeField(verbose_name="Date de l'evenement", null=True, blank=True)
     auteur          = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
-    likes           = models.ManyToManyField(User, related_name='likes')
+    likes           = models.ManyToManyField(User, related_name='likes',null=True)
 
     def __str__(self):
         return "{0} ecrit par {1}".format(self.titre, self.auteur)

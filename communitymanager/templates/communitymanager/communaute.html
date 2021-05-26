@@ -24,7 +24,7 @@
                 </th>
                 {% endif %}
             </tr>
-            <tr ><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago</td></tr>
+            <tr ><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago by <strong>{{post.auteur|capfirst}}</strong></td></tr>
         </table>
     </div>
     <div class="blockDescription slideIn">

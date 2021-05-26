@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from communitymanager.models import *
 from django.http import Http404
+from communitymanager.forms import *
 
 # Create your views here.
 def first_page(request):
@@ -40,6 +41,13 @@ def post(request, id_post, slug_post):
     except Http404:
         return redirect(communautes)
 
+    form = CommentaireForm(request.POST or None)
+    if form.is_valid():
+        Commentaire.objects.create(post=post,auteur=request.user, contenu=form.cleaned_data.get('commenter'))
+        form = CommentaireForm()
+#        return redirect(post, id=id_post, slug=slug_post)
+
+
     date_now=timezone.now()
     list_com = post.commentaires.all()
     nb_com = len(list_com)
@@ -50,7 +58,9 @@ def post(request, id_post, slug_post):
 
 @login_required(login_url='/accounts/login/')
 def nouveau_post(request):
-
+    form = MyPostForm(request.POST or None)
+    if form.is_valid():
+        print('ok')
     return render(request, 'communitymanager/nouveau_post.html', locals())
 
 
