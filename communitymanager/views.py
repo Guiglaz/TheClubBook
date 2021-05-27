@@ -47,7 +47,7 @@ def communaute(request, id_commu, nom_commu):
 
     date_now=timezone.now()
     nb_abonnes=len(commu.abonnes.all())
-    list_post = commu.posts.all()
+    list_post = commu.posts.all().order_by('-date_creation')
     nb_post = len(list_post)
     return render(request, 'communitymanager/communaute.html', locals())
 
@@ -90,12 +90,9 @@ def nouveau_post(request):
                             description=form.cleaned_data.get('description'),
                             communaute=c,
                             priorite=p,
+                            evenementiel=form.cleaned_data.get('envenementiel'),
                             date_evenement=form.cleaned_data.get('date_evenement'),
                             auteur=request.user)
-        if form.cleaned_data.get('evenementiel'):
-            nouveauPost.evenementiel = True
-        else:
-            nouveauPost.evenementiel = False
 
         return redirect(post, id_post=nouveauPost.id, slug_post=nouveauPost.slug)
 
@@ -104,7 +101,6 @@ def nouveau_post(request):
 
 @login_required(login_url='/accounts/login/')
 def modif_post(request,id_post):
-    po=None
     try:
         po = get_object_or_404(Post, id=id_post)
 
@@ -121,14 +117,27 @@ def modif_post(request,id_post):
               'commu':po.communaute,
               'evenementiel':po.evenementiel,
               'date_evenement':po.date_evenement}
+
     form = MyPostForm(request.POST or None)
     list_priorite=Priorite.objects.all()
     list_com = Communaute.objects.all()
     list_pb = form.errors.as_data()
-    print('ok')
-    if form.is_valid():
-        print('ok')
 
+    if form.is_valid():
+        c = Communaute.objects.get(nom=form.cleaned_data.get('commu'))
+        p = Priorite.objects.get(label=form.cleaned_data.get('priorite'))
+
+        Post.objects.filter(id=id_post).update(titre=form.cleaned_data.get('titre'),
+                                          slug=slugify(form.cleaned_data.get('titre')),
+                                          description=form.cleaned_data.get('description'),
+                                          communaute=c,
+                                          priorite=p,
+                                          evenementiel=form.cleaned_data.get('envenementiel'),
+                                          date_evenement=form.cleaned_data.get('date_evenement'))
+        slug_id = po.slug
+        return redirect(post, id_post=id_post, slug_post=slug_id)
+
+    form = MyPostForm(donnes)
     return render(request, 'communitymanager/modif_post.html', locals())
 
 

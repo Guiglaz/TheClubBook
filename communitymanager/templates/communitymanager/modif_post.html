@@ -8,7 +8,7 @@
     <hr>
 </div>
 
-<form style="margin:10px" action="{% url 'modif_post' %}" method="post">
+<form style="margin:10px" action="{% url 'modif_post' id_post %}" method="post">
     {% csrf_token %}
 
     {% if list_pb %}
