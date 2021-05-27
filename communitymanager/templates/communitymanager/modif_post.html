@@ -14,7 +14,7 @@
     {% if list_pb %}
         <p class="errorPr">/!\ Publication impossible /!\</p>
     {% endif %}
-
+    <div class="formObjH" style="border:4px solid #0e2671;padding:5px;border-radius:5px">
     <p class="formObj"><label for="id_titre">Titre du post:</label><br>
     <input class="formObj" type="text" name="titre" maxlength="100" required="required" autofocus id="id_titre" {% if form.titre.value != none %} value="{{ form.titre.value }}"{%endif%}}><p/>
     <div class="errorPr"><p>{{ form.titre.errors }}</p></div>
@@ -34,15 +34,15 @@
             <option class="formObj" value="{{commu.nom}}">
             {% endfor %}
         </datalist></p>
-    <div class="errorPr"><p>{{ form.commu.errors }}</p></div>
+        <div class="errorPr"><p>{{ form.commu.errors }}</p></div></div>
     <hr>
 
 
     <p class="formObj"><label for="id_description">Description:</label><br>
-        <textarea class="formObj" name="description" cols="40" rows="10" required="required" >{% if form.description.value != none %}{{ form.description.value }}{% endif %}</textarea></p><hr>
+        <textarea id="id_description" class="formObj" name="description" cols="40" rows="10" required="required" >{% if form.description.value != none %}{{ form.description.value }}{% endif %}</textarea></p><hr>
     <div class="errorPr"><p>{{ form.description.errors }}</p></div>
 
-
+    <div class="formObjH" style="border:4px solid #0e2671;padding:5px;border-radius:5px">
     <p><label for="id_envenementiel">À cocher si c'est un évènement:</label>
         {{form.envenementiel}}
     <div class="errorPr"><p>{{ form.evenementiel.errors }}</p></div>
@@ -50,7 +50,7 @@
     <p><label for="id_date_evenement">Date evenement:</label>
     <input type="datetime-local" name="date_evenement" id="id_date_evenement" value="{{ form.date_evenement.value }}"></p>
 
-    <div class="errorPr"><p>{{ form.date_evenement.errors }}</p></div>
+        <div class="errorPr"><p>{{ form.date_evenement.errors }}</p></div></div>
 
     <p><input type="submit" value="Publier"/></p>
 </form>

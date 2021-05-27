@@ -3,8 +3,8 @@ from communitymanager.models import *
 
 
 class SubForm(forms.Form):
-    suivre = forms.BooleanField(widget=forms.HiddenInput())
-    nom = forms.IntegerField(widget=forms.HiddenInput())
+    suivre = forms.BooleanField(widget=forms.HiddenInput(),required=False)
+    nom = forms.IntegerField(widget=forms.HiddenInput(),required=False)
 
 class CommentaireForm(forms.Form):
     commenter = forms.CharField(strip=True,widget=forms.Textarea,required=True)

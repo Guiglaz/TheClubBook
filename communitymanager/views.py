@@ -147,7 +147,6 @@ def news_feed(request):
     list_abonnements = request.user.abonnements.all()
     list_post=Post.objects.none()
     print(list_abonnements)
-    print(list_post)
     for i in range(len(list_abonnements)):
         print(i)
         print(list_abonnements[i].posts.all())

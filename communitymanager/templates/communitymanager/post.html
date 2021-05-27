@@ -7,8 +7,9 @@
     <h1 class="title">{{post.titre|title}}{% if user == post.auteur %} -  <a href="{% url 'modif_post' post.id %}"><i style="color:#0499de" class="fas fa-edit"></i></a>{% endif %}
 </h1>
     <p class="time">Since {{post.date_creation |date:"D d M Y"}}
-        - {{nb_likes}} {%if nb_likes < 2 %}like {% else %}likes{%endif%} -
-    <form action="{% url 'post' id_post slug_post %}">
+        - {{nb_likes}} {%if nb_likes < 2 %}like {% else %}likes{%endif%}</p>
+    {%if post.evenementiel == True %}<p class="time"><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</p>{% endif %}
+    <p><form action="{% url 'post' id_post slug_post %}">
     {% if user in post.likes.all %}
         <input type="hidden" name="nom" value="{{post.id}}">
         <input type="hidden" name="suivre" value="False">
@@ -19,7 +20,6 @@
         <button type="submit"><i class="fas fa-thumbs-up"></i></button>
         {% endif %}</form>
     </p>
-    {%if post.evenementiel == True %}<p class="time"><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</p>{% endif %}
 
     <hr>
 </div>
@@ -56,7 +56,6 @@
                                                     <button type="submit"><i class="fas fa-thumbs-up"></i></button>
                                                     {% endif %}</form>
                                                 </p>
-                                                {%if post.evenementiel == True %}<p class="time"><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</p>{% endif %}</tr>
             <tr><td class="tempClass "> " {{ com.contenu|capfirst }} "</td></tr>
             <tr><td class="time">{{ com.date_creation|timesince:date_now }} ago</td></tr>
         </table>

@@ -24,13 +24,13 @@
                 {% if user in com.abonnes.all %}
                 <th rowspan="2" class="unsubscribe">
                     <input type="hidden" name="nom" value="{{com.id}}">
-                    <input type="hidden" name="suivre" value="False">
+                    <input type="hidden" name="suivre" value=False>
                     <button type="submit"><i class="fas fa-times-circle"></i></button>
                 </th>
                 {% else %}
                 <th rowspan="2" class="subscribe">
                     <input type="hidden" name="nom" value="{{com.id}}">
-                    <input type="hidden" name="suivre" value="True">
+                    <input type="hidden" name="suivre" value=True>
                     <button type="submit"><i class="fas fa-plus-circle"></i></button>
                 </th>
                 {% endif %}
