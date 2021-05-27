@@ -1,0 +1,350 @@
+- model: communitymanager.communaute
+  pk: 1
+  fields:
+    nom: communaute1
+    date_creation: 2021-05-22 23:12:14.323416+00:00
+    abonnes:
+    - 1
+- model: communitymanager.communaute
+  pk: 2
+  fields:
+    nom: cc
+    date_creation: 2021-05-22 23:12:14.323416+00:00
+    abonnes:
+    - 2
+- model: communitymanager.communaute
+  pk: 3
+  fields:
+    nom: hello
+    date_creation: 2021-05-22 23:12:14.323416+00:00
+    abonnes: []
+- model: communitymanager.communaute
+  pk: 4
+  fields:
+    nom: hy there
+    date_creation: 2021-05-27 02:26:36+00:00
+    abonnes:
+    - 2
+- model: communitymanager.communaute
+  pk: 5
+  fields:
+    nom: testtt
+    date_creation: 2021-05-27 02:27:51+00:00
+    abonnes:
+    - 1
+    - 2
+- model: communitymanager.priorite
+  pk: 1
+  fields:
+    label: blanche
+- model: communitymanager.priorite
+  pk: 2
+  fields:
+    label: jaune
+- model: communitymanager.priorite
+  pk: 3
+  fields:
+    label: orange
+- model: communitymanager.priorite
+  pk: 4
+  fields:
+    label: rouge
+- model: communitymanager.priorite
+  pk: 5
+  fields:
+    label: ecarlate
+- model: communitymanager.post
+  pk: 1
+  fields:
+    titre: salut
+    slug: salut
+    description: description du post
+    date_creation: 2021-05-21 14:20:22.438234+00:00
+    communaute: 1
+    priorite: 1
+    evenementiel: false
+    date_evenement: null
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 2
+  fields:
+    titre: "chang\xE9"
+    slug: change
+    description: "chang\xE9"
+    date_creation: 2021-05-25 10:29:51.486792+00:00
+    communaute: 2
+    priorite: 1
+    evenementiel: false
+    date_evenement: 2021-05-30 05:38:00+00:00
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 3
+  fields:
+    titre: bleu
+    slug: bleu
+    description: description du post
+    date_creation: 2021-05-25 10:40:15.430226+00:00
+    communaute: 1
+    priorite: 1
+    evenementiel: false
+    date_evenement: null
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 5
+  fields:
+    titre: bleu
+    slug: bleu
+    description: description du post
+    date_creation: 2021-05-26 23:17:00.490707+00:00
+    communaute: 1
+    priorite: 1
+    evenementiel: false
+    date_evenement: null
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 6
+  fields:
+    titre: bleu
+    slug: bleu
+    description: description du post
+    date_creation: 2021-05-26 23:19:26.775188+00:00
+    communaute: 1
+    priorite: 1
+    evenementiel: false
+    date_evenement: null
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 7
+  fields:
+    titre: bleu
+    slug: bleu
+    description: description du postszddzdzddddddddddddddd
+    date_creation: 2021-05-26 23:19:59.455945+00:00
+    communaute: 1
+    priorite: 1
+    evenementiel: true
+    date_evenement: 2021-05-19 06:14:00+00:00
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 8
+  fields:
+    titre: test date
+    slug: test-date
+    description: zddzzdzd
+    date_creation: 2021-05-27 03:33:52.720724+00:00
+    communaute: 3
+    priorite: 1
+    evenementiel: true
+    date_evenement: 2021-05-14 05:36:00+00:00
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 9
+  fields:
+    titre: ssccs
+    slug: ssccs
+    description: scsccsscscsc
+    date_creation: 2021-05-27 03:37:33.675875+00:00
+    communaute: 4
+    priorite: 1
+    evenementiel: false
+    date_evenement: 2021-06-06 10:37:00+00:00
+    auteur: 2
+    likes: []
+- model: communitymanager.post
+  pk: 10
+  fields:
+    titre: xssxxs
+    slug: xssxxs
+    description: xssxxssxxs
+    date_creation: 2021-05-27 03:39:08.613073+00:00
+    communaute: 5
+    priorite: 3
+    evenementiel: true
+    date_evenement: 2021-05-28 05:38:00+00:00
+    auteur: 2
+    likes: []
+- model: communitymanager.commentaire
+  pk: 1
+  fields:
+    date_creation: 2021-05-22 22:11:23+00:00
+    contenu: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+      Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed,
+      dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper
+      congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est
+      eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa,
+      scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in
+      risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent
+      egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut
+      augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus
+      et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque
+      fermentum.
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 2
+  fields:
+    date_creation: 2021-05-25 10:35:00.527643+00:00
+    contenu: hello world
+    auteur: 1
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 3
+  fields:
+    date_creation: 2021-05-26 17:33:07.127723+00:00
+    contenu: ddzdz
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 4
+  fields:
+    date_creation: 2021-05-26 17:35:41.061244+00:00
+    contenu: eeeee
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 5
+  fields:
+    date_creation: 2021-05-26 17:40:54.264636+00:00
+    contenu: dzdzdzd
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 6
+  fields:
+    date_creation: 2021-05-26 17:41:46.394432+00:00
+    contenu: dzdzdzd
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 7
+  fields:
+    date_creation: 2021-05-26 17:42:06.976194+00:00
+    contenu: xzxs
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 8
+  fields:
+    date_creation: 2021-05-26 17:44:27.477468+00:00
+    contenu: xzxs
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 9
+  fields:
+    date_creation: 2021-05-26 17:44:42.594414+00:00
+    contenu: blabla
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 10
+  fields:
+    date_creation: 2021-05-26 17:46:08.056283+00:00
+    contenu: blabla
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 11
+  fields:
+    date_creation: 2021-05-26 17:46:14.769403+00:00
+    contenu: hello world
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 12
+  fields:
+    date_creation: 2021-05-26 17:46:46.651925+00:00
+    contenu: hello wo
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 13
+  fields:
+    date_creation: 2021-05-26 17:48:27.543184+00:00
+    contenu: hello wo
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 14
+  fields:
+    date_creation: 2021-05-26 17:48:33.582624+00:00
+    contenu: blabla
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 15
+  fields:
+    date_creation: 2021-05-26 17:48:38.153493+00:00
+    contenu: heo
+    auteur: 2
+    post: 3
+    likes: []
+- model: communitymanager.commentaire
+  pk: 16
+  fields:
+    date_creation: 2021-05-26 17:49:18.406289+00:00
+    contenu: "\xE7a marche?"
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 17
+  fields:
+    date_creation: 2021-05-26 23:01:20.553305+00:00
+    contenu: kjkj
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 18
+  fields:
+    date_creation: 2021-05-26 23:11:17.462456+00:00
+    contenu: kjkj
+    auteur: 2
+    post: 1
+    likes: []
+- model: communitymanager.commentaire
+  pk: 19
+  fields:
+    date_creation: 2021-05-26 23:17:15.857933+00:00
+    contenu: ededede
+    auteur: 2
+    post: 5
+    likes: []
+- model: communitymanager.commentaire
+  pk: 20
+  fields:
+    date_creation: 2021-05-27 04:02:38.499062+00:00
+    contenu: kefekj nfeef
+    auteur: 1
+    post: 7
+    likes: []
+- model: communitymanager.commentaire
+  pk: 21
+  fields:
+    date_creation: 2021-05-27 04:03:01.964268+00:00
+    contenu: kefekj nfeef
+    auteur: 1
+    post: 7
+    likes: []
