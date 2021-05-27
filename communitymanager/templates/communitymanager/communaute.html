@@ -15,16 +15,19 @@
             <tr class="slideInTitre">
                 <td class=""><a class="" href="{% url 'post' post.id post.slug %}">{{ post.titre | title}}</a></td>
                 {% if user in post.likes.all %}
-                <th rowspan="2" class="subscribe">
+                <th rowspan="1" class="subscribe">
                     <i class="fas fa-thumbs-up"></i>
                 </th>
                 {% else %}
-                <th rowspan="2" class="like">
+                <th rowspan="1" class="like">
                     <i class="fas fa-thumbs-up"></i>
                 </th>
                 {% endif %}
             </tr>
-            <tr ><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago by <strong>{{post.auteur|capfirst}}</strong></td></tr>
+            {%if post.evenementiel == True %}<tr><td><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</td></tr>{% endif %}
+            <tr><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago by <strong>{{post.auteur|capfirst}}</strong> - {% if post.likes.all|length == 0 %}Aucun like{% else %}{{post.likes.all|length}} like{{post.likes.all|length|pluralize}}{% endif %}</td>
+                {% if user == post.auteur %} <td style="text-align:left"><a href="{% url 'modif_post' post.id %}"><i style="color:#0499de" class="fas fa-edit"></i></a></td>{% endif %}
+            </tr>
         </table>
     </div>
     <div class="blockDescription slideIn">

@@ -18,42 +18,44 @@
         <p class="errorPr">/!\ Publication impossible /!\</p>
     {% endif %}
 
-    <p class="formObj"><label for="id_titre">Titre du post:</label><br>
-    <input class="formObj" type="text" name="titre" maxlength="100" required="required" autofocus id="id_titre" {% if form.titre.value != none %} value="{{ form.titre.value }}"{%endif%}}><p/>
+    <div class="formObjH" style="border:4px solid #0e2671;padding:5px;border-radius:5px">
+    <p class="formObj formObjH"><label for="id_titre">Titre du post:</label><br>
+    <input class="formObj formObjH" type="text" name="titre" maxlength="100" required="required" autofocus id="id_titre" {% if form.titre.value != none %} value="{{ form.titre.value }}"{%endif%}}><p/>
     <div class="errorPr"><p>{{ form.titre.errors }}</p></div>
 
-    <p class="formObj"><label for="id_priorite">Importance:</label><br>
-        <select class="formObj" name="priorite" id="id_priorite" required="required">
+    <p class="formObj formObjH"><label for="id_priorite">Importance:</label><br>
+        <select class="formObj formObjH" name="priorite" id="id_priorite" required="required">
             {% for prt in list_priorite %}
                 <option value="{{prt.label}}"{% if forloop.counter == 1 %}selected="selected"{% endif %}>{{prt.label}}</option>
             {% endfor %}
         </select></p>
     <div class="errorPr"><p>{{ form.priorite.errors }}</p></div>
 
-    <p class="formObj"><label for="id_communaute">Communaute:</label><br>
-        <input class="formObj" id="id_communaute" name="commu" list="list_com" required="required" {% if form.commu.value != none %} value="{{ form.commu.value }}" {%endif%}>
-        <datalist class="formObj" id="list_com">
+    <p class="formObj formObjH"><label for="id_communaute">Communaute:</label><br>
+        <input class="formObj formObjH" id="id_communaute" name="commu" list="list_com" required="required" {% if form.commu.value != none %} value="{{ form.commu.value }}" {%endif%}>
+        <datalist class="formObj formObjH" id="list_com">
             {% for commu in list_com %}
             <option class="formObj" value="{{commu.nom}}">
             {% endfor %}
         </datalist></p>
-    <div class="errorPr"><p>{{ form.commu.errors }}</p></div>
+    <div class="errorPr"><p>{{ form.commu.errors }}</p></div></div>
     <hr>
 
 
     <p class="formObj"><label for="id_description">Description:</label><br>
-        <textarea class="formObj" name="description" cols="40" rows="10" required="required" >{% if form.description.value != none %}{{ form.description.value }}{% endif %}</textarea></p><hr>
+        <textarea id="id_description" class="formObj" name="description" cols="40" rows="10" required="required" >{% if form.description.value != none %}{{ form.description.value }}{% endif %}</textarea></p><hr>
     <div class="errorPr"><p>{{ form.description.errors }}</p></div>
 
 
-    <p><label for="id_envenementiel">À cocher si c'est un évènement:</label>
+    <div class="formObjH" style="border:4px solid #0e2671;padding:5px;border-radius:5px">
+    <p><label>À cocher si c'est un évènement:</label>
         {{form.envenementiel}}
     <div class="errorPr"><p>{{ form.evenementiel.errors }}</p></div>
 
     <p><label for="id_date_evenement">Date evenement:</label>
     <input type="datetime-local" name="date_evenement" id="id_date_evenement" value="{{ form.date_evenement.value }}"></p>
 
-    <div class="errorPr"><p>{{ form.date_evenement.errors }}</p></div>
+        <div class="errorPr"><p>{{ form.date_evenement.errors }}</p></div></div>
 
     <p><input type="submit" value="Publier"/></p>
 </form>

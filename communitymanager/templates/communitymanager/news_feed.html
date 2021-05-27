@@ -1,7 +1,46 @@
 {% extends "base.html" %}
+{% block addHead %}<link rel="stylesheet" type="text/css" href='/static/communitymanager/css/commun.css'> {% endblock %}
+
 {% block menuFeed %} activeMenuG {% endblock %}
 
-
 {% block content %}
-<p>Page news feed</p>
+<div class="blockTitle">
+    <h1 class="title">Votre News Feed</h1>
+    <p class="time">{% if user.abonnements.all == 0 %}Vous n'avez encore aucun abonnement{% else %}{{user.abonnements.all|length}} abonnement{{user.abonnements.all|length|pluralize}}{% endif %}</p>
+<hr>
+</div>
+<div class="blockContenu">
+
+    {% for post in list_post %}
+    <div class="blockMenu slideIn">
+        <table class="blockMen">
+            <tr class="slideInTitre">
+                <td class=""><a class="" href="{% url 'post' post.id post.slug %}">{{ post.titre | title}}</a></td>
+                {% if user in post.likes.all %}
+                <th rowspan="1" class="subscribe">
+                    <i class="fas fa-thumbs-up"></i>
+                </th>
+                {% else %}
+                <th rowspan="1" class="like">
+                    <i class="fas fa-thumbs-up"></i>
+                </th>
+                {% endif %}
+            </tr>
+            {% if post.evenementiel == True %}<tr><td><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</td></tr>{% endif %}
+            <tr><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago by <strong>{{post.auteur|capfirst}}</strong> - {% if post.likes.all|length == 0 %}Aucun like{% else %}{{post.likes.all|length}} like{{post.likes.all|length|pluralize}}{% endif %}</td>
+                {% if user == post.auteur %} <td style="text-align:left"><a href="{% url 'modif_post' post.id %}"><i style="color:#0499de" class="fas fa-edit"></i></a></td>{% endif %}
+            </tr>
+        </table>
+    </div>
+    <div class="blockDescription slideIn">
+        {{post.description|truncatewords:50|capfirst}}
+    </div>
+    <hr>
+
+    {% empty %}
+        <h6 class="empty">Desolé mais il n'y a pas encore de post à afficher. <a href="{% url 'nouveau_post' %}">En écrire un</a></h6>
+    {% endfor %}
+
+
+</div>
 {% endblock %}

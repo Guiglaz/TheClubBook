@@ -37,7 +37,7 @@
                 </form>
 
             </tr>
-            <tr class=""><td class="time">Since {{com.date_creation |date:"D d M Y"}}</td></tr>
+            <tr class=""><td class="time">Since {{com.date_creation |date:"D d M Y"}} - {% if com.abonnes.all|length == 0 %}Aucun abonné{% else %}{{com.abonnes.all|length}} abonné{{com.abonnes.all|length|pluralize}}{% endif %}</td></tr>
         </table>
     </div>
     <hr>

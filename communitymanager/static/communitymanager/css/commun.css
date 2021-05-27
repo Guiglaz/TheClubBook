@@ -90,6 +90,11 @@
 }
 .formObj{
     width:100%;
+    max-width:800px;
+}
+
+.formObjH{
+    max-width:500px;
 }
 .slideIn{
     animation: myAnim 1s ease 1 -300ms normal forwards;

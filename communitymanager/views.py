@@ -20,9 +20,9 @@ def communautes(request):
     list_com = Communaute.objects.all()
     nb_commu = len(list_com)
 
-    form = SubForm(request.POST or None)
-    print(form.is_valid())
-    if form.is_valid():
+    formSub = SubForm(request.POST or None)
+    print(formSub.is_valid())
+    if formSub.is_valid():
         print('ok')
         print(form.__dict__)
 
@@ -60,6 +60,7 @@ def post(request, id_post, slug_post):
         return redirect(communautes)
 
     form = CommentaireForm(request.POST or None)
+
     if form.is_valid():
         Commentaire.objects.create(post=post,auteur=request.user, contenu=form.cleaned_data.get('commenter'))
         form = CommentaireForm()
@@ -102,7 +103,31 @@ def nouveau_post(request):
 
 
 @login_required(login_url='/accounts/login/')
-def modif_post(request):
+def modif_post(request,id_post):
+    po=None
+    try:
+        po = get_object_or_404(Post, id=id_post)
+
+    except Http404:
+        redirect(nouveau_post)
+
+    if request.user != po.auteur:
+        print('non')
+        return redirect(post,id_post=id_post, slug_post=po.slug)
+
+    donnes = {'titre':po.titre,
+              'priorite':po.priorite,
+              'description':po.description,
+              'commu':po.communaute,
+              'evenementiel':po.evenementiel,
+              'date_evenement':po.date_evenement}
+    form = MyPostForm(request.POST or None)
+    list_priorite=Priorite.objects.all()
+    list_com = Communaute.objects.all()
+    list_pb = form.errors.as_data()
+    print('ok')
+    if form.is_valid():
+        print('ok')
 
     return render(request, 'communitymanager/modif_post.html', locals())
 
@@ -110,5 +135,13 @@ def modif_post(request):
 @login_required(login_url='/accounts/login/')
 def news_feed(request):
     date_now=timezone.now()
-
+    list_abonnements = request.user.abonnements.all()
+    list_post=Post.objects.none()
+    print(list_abonnements)
+    print(list_post)
+    for i in range(len(list_abonnements)):
+        print(i)
+        print(list_abonnements[i].posts.all())
+        list_post = list_post.union(list_abonnements[i].posts.all())
+    list_post = list_post.order_by('-date_creation')
     return render(request, 'communitymanager/news_feed.html', locals())
