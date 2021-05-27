@@ -14,15 +14,20 @@
         <table class="blockMen">
             <tr class="slideInTitre">
                 <td class=""><a class="" href="{% url 'post' post.id post.slug %}">{{ post.titre | title}}</a></td>
+                <form action="{% url 'commu' id_commu nom_commu %}">
                 {% if user in post.likes.all %}
                 <th rowspan="1" class="subscribe">
-                    <i class="fas fa-thumbs-up"></i>
+                    <input type="hidden" name="nom" value="{{post.id}}">
+                    <input type="hidden" name="suivre" value="False">
+                    <button type="submit"><i style="color:#0499de" class="fas fa-thumbs-up"></i></button>
                 </th>
                 {% else %}
                 <th rowspan="1" class="like">
-                    <i class="fas fa-thumbs-up"></i>
+                    <input type="hidden" name="nom" value="{{post.id}}">
+                    <input type="hidden" name="suivre" value="True">
+                    <button type="submit"><i class="fas fa-thumbs-up"></i></button>
                 </th>
-                {% endif %}
+                    {% endif %}</form>
             </tr>
             {%if post.evenementiel == True %}<tr><td><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</td></tr>{% endif %}
             <tr><td class="time">Posted {{ post.date_creation|timesince:date_now }} ago by <strong>{{post.auteur|capfirst}}</strong> - {% if post.likes.all|length == 0 %}Aucun like{% else %}{{post.likes.all|length}} like{{post.likes.all|length|pluralize}}{% endif %}</td>

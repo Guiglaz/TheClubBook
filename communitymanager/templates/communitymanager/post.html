@@ -8,7 +8,16 @@
 </h1>
     <p class="time">Since {{post.date_creation |date:"D d M Y"}}
         - {{nb_likes}} {%if nb_likes < 2 %}like {% else %}likes{%endif%} -
-        <i class="fas fa-thumbs-up titleLike"></i>
+    <form action="{% url 'post' id_post slug_post %}">
+    {% if user in post.likes.all %}
+        <input type="hidden" name="nom" value="{{post.id}}">
+        <input type="hidden" name="suivre" value="False">
+        <button type="submit"><i style="color:#0499de" class="fas fa-thumbs-up"></i></button>
+    {% else %}
+        <input type="hidden" name="nom" value="{{post.id}}">
+        <input type="hidden" name="suivre" value="True">
+        <button type="submit"><i class="fas fa-thumbs-up"></i></button>
+        {% endif %}</form>
     </p>
     {%if post.evenementiel == True %}<p class="time"><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</p>{% endif %}
 
@@ -36,7 +45,18 @@
     <div class="com">
     {% for com in list_com %}
         <table class="tempClass com">
-            <tr><th class="tempClass ">{{com.auteur.username|capfirst}} a dit</th><td class="comlike" rowspan="3"><i class="fas fa-thumbs-up"></i></td></tr>
+            <tr><th class="tempClass ">{{com.auteur.username|capfirst}} a dit</th><td class="comlike" rowspan="3"><form action="{% url 'post' id_post slug_post %}">
+                                                {% if user in post.likes.all %}
+                                                    <input type="hidden" name="nom" value="{{post.id}}">
+                                                    <input type="hidden" name="suivre" value="False">
+                                                    <button type="submit"><i style="color:#0499de" class="fas fa-thumbs-up"></i></button>
+                                                {% else %}
+                                                    <input type="hidden" name="nom" value="{{post.id}}">
+                                                    <input type="hidden" name="suivre" value="True">
+                                                    <button type="submit"><i class="fas fa-thumbs-up"></i></button>
+                                                    {% endif %}</form>
+                                                </p>
+                                                {%if post.evenementiel == True %}<p class="time"><i class="far fa-calendar-alt"></i> {{post.date_evenement}}</p>{% endif %}</tr>
             <tr><td class="tempClass "> " {{ com.contenu|capfirst }} "</td></tr>
             <tr><td class="time">{{ com.date_creation|timesince:date_now }} ago</td></tr>
         </table>

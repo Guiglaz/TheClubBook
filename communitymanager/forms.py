@@ -6,8 +6,6 @@ class SubForm(forms.Form):
     suivre = forms.BooleanField(widget=forms.HiddenInput())
     nom = forms.IntegerField(widget=forms.HiddenInput())
 
-
-
 class CommentaireForm(forms.Form):
     commenter = forms.CharField(strip=True,widget=forms.Textarea,required=True)
 
