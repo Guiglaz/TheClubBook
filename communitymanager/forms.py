@@ -4,7 +4,7 @@ from communitymanager.models import *
 
 class SubForm(forms.Form):
     suivre = forms.BooleanField()
-    nom = forms.ImageField()
+    nom = forms.IntegerField()
 
 
 

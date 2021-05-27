@@ -19,11 +19,12 @@ def communautes(request):
     date_now=timezone.now()
     list_com = Communaute.objects.all()
     nb_commu = len(list_com)
-    form = SubForm(request.POST or None)
 
-    #if form.is_valid():
-    print('ok')
-    print(form.__dict__)
+    form = SubForm(request.POST or None)
+    print(form.is_valid())
+    if form.is_valid():
+        print('ok')
+        print(form.__dict__)
 
     #p = Post.objects.get(id=form.cleaned_data.get('nom'))
 
