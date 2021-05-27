@@ -10,8 +10,8 @@
 }
 .empty{
     color:gray;
-
 }
+
 .blockContenu{
     max-width: 800px;
     padding-left: 10px;
@@ -83,8 +83,14 @@
 
 }
 
-
-
+.errorPr{
+    color: red;
+    font-size: small;
+    font-weight: bold;
+}
+.formObj{
+    width:100%;
+}
 .slideIn{
     animation: myAnim 1s ease 1 -300ms normal forwards;
 }
@@ -118,3 +124,4 @@
     transform-origin: 100% 0%;
   }
 }
+

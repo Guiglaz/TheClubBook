@@ -3,7 +3,10 @@ from communitymanager.models import *
 
 
 class SubForm(forms.Form):
-    suivre = forms.BooleanField(required=False)
+    suivre = forms.BooleanField()
+    nom = forms.ImageField()
+
+
 
 class CommentaireForm(forms.Form):
     commenter = forms.CharField(strip=True,widget=forms.Textarea,required=True)
@@ -11,8 +14,8 @@ class CommentaireForm(forms.Form):
 
 class MyPostForm(forms.Form):
     titre = forms.CharField(max_length=100, strip=True,required=True)
-    priorite = forms.ModelChoiceField(queryset=Priorite.objects.all(), required=True)
-    description = forms.CharField(strip=True,widget=forms.Textarea,required=True)
+    priorite = forms.CharField(max_length=50, required=True)
+    description = forms.CharField(strip=True, required=True)
     commu = forms.CharField(max_length=50,required=True)
     envenementiel = forms.BooleanField(required=False)
     date_evenement = forms.DateTimeField(input_formats= ['%Y-%m-%dT%H:%M', '%Y-%m-%d %H:%M'],required=False)
@@ -23,9 +26,9 @@ class MyPostForm(forms.Form):
         try:
             c = Communaute.objects.get(nom=cleaned_data.get('commu'))
         except Communaute.DoesNotExist :
-            self.add_error("commu", "Cette communaute n'existe pas.. N'est-ce pas plus simple de pouvoir ecrire le nom de la commu plutot que de la chercher?")
+            self.add_error("commu", "Cette communaute n'existe pas..")
 
 
         if self.cleaned_data.get('envenementiel') and self.cleaned_data.get('date_evenement')==None:
-            self.add_error("date_evnt","Veuillez renseigner la date de l'evenement")
+            self.add_error("date_evenement","Veuillez renseigner la date de l'evenement")
         return self.cleaned_data

@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from communitymanager.models import *
 from django.http import Http404
 from communitymanager.forms import *
+from django.utils.text import slugify
+
 
 # Create your views here.
 def first_page(request):
@@ -17,6 +19,21 @@ def communautes(request):
     date_now=timezone.now()
     list_com = Communaute.objects.all()
     nb_commu = len(list_com)
+    form = SubForm(request.POST or None)
+
+    #if form.is_valid():
+    print('ok')
+    print(form.__dict__)
+
+    #p = Post.objects.get(id=form.cleaned_data.get('nom'))
+
+    #if form.cleaned_data.get('suivre'):
+    #    p.abonnes.add(request.user)
+    #else:
+    #    p.abonnes.remove(request.user)
+   # else:
+    #    pass
+
     return render(request, 'communitymanager/communautes.html', locals())
 
 
@@ -59,8 +76,27 @@ def post(request, id_post, slug_post):
 @login_required(login_url='/accounts/login/')
 def nouveau_post(request):
     form = MyPostForm(request.POST or None)
+    list_priorite=Priorite.objects.all()
+    list_com = Communaute.objects.all()
+    list_pb = form.errors.as_data()
+
     if form.is_valid():
-        print('ok')
+        c = Communaute.objects.get(nom=form.cleaned_data.get('commu'))
+        p = Priorite.objects.get(label=form.cleaned_data.get('priorite'))
+        nouveauPost = Post.objects.create(titre=form.cleaned_data.get('titre'),
+                            slug=slugify(form.cleaned_data.get('titre')),
+                            description=form.cleaned_data.get('description'),
+                            communaute=c,
+                            priorite=p,
+                            date_evenement=form.cleaned_data.get('date_evenement'),
+                            auteur=request.user)
+        if form.cleaned_data.get('evenementiel'):
+            nouveauPost.evenementiel = True
+        else:
+            nouveauPost.evenementiel = False
+
+        return redirect(post, id_post=nouveauPost.id, slug_post=nouveauPost.slug)
+
     return render(request, 'communitymanager/nouveau_post.html', locals())
 
 
